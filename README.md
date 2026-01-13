@@ -22,9 +22,12 @@
 
 ### SQL
 | 플랫폼 | 문제명 | 유형/주제 | 난이도 | 풀이 링크 | 최초 풀이일 | 비고 |
-| Codility | SqlSum | ---:| Elementary |---| 20260111 | --- |
-| Codility | SqlEventsDelta | ---:| Easy |---| 20260111 | --- |
-| Codility | SqlWorldCup | ---:| Medium |---| 20260111 | --- |
+|---|---|---:|---:|---|---|---|
+| Codility | SqlSum | | Elementary | | 20260111 | |
+| Codility | SqlEventsDelta | | Easy | | 20260111 | |
+| Codility | SqlWorldCup | | Medium | | 20260111 | |
+| Codility | SqlWorldCup | | Medium | | 20260111 | |
+| LeetCode | 550. Game Play Analysis IV | | Medium | | 20260111 | |
 
 ---
 
