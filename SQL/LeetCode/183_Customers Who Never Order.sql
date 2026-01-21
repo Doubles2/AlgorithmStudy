@@ -1,0 +1,11 @@
+-- Write your PostgreSQL query statement below
+SELECT
+    A.NAME AS CUSTOMERS
+FROM
+    CUSTOMERS   A
+LEFT JOIN
+    ORDERS  B
+ON
+    A.ID = B.CUSTOMERID
+WHERE
+    B.CUSTOMERID IS NULL

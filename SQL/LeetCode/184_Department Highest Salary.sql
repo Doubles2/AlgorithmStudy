@@ -1,0 +1,33 @@
+-- Write your PostgreSQL query statement below
+WITH BASE AS (
+    SELECT
+        A.DEPARTMENTID,
+        B.NAME AS DEPARTMENT,
+        A.NAME AS EMPLOYEE,
+        A.SALARY
+    FROM   
+        EMPLOYEE    A
+    LEFT JOIN
+        DEPARTMENT  B
+    ON  A.DEPARTMENTID = B.ID
+),
+AGG AS (
+SELECT
+    DEPARTMENT,
+    EMPLOYEE,
+    SALARY,
+    RANK() OVER (
+        PARTITION BY DEPARTMENT
+        ORDER BY SALARY DESC
+    ) AS RANK_SALARY
+FROM
+    BASE
+)
+SELECT
+    DEPARTMENT,
+    EMPLOYEE,
+    SALARY
+FROM 
+    AGG
+WHERE
+    RANK_SALARY = 1

@@ -28,9 +28,11 @@
 | Codility | SqlEventsDelta | | Easy | | 20260111 | |
 | Codility | SqlWorldCup | | Medium | | 20260111 | |
 | Codility | SqlWorldCup | | Medium | | 20260111 | |
-| LeetCode | 550. Game Play Analysis IV | | Medium | | 20260111 | |
+| LeetCode | | | Easy | | 20260111 | 4/112 |
+| LeetCode | | | Medium | | 20260111 | 5/112 |
+| LeetCode | | | Hard | | 20260111 | 1/112 |
 
 ---
 
 ## Updates
-- Latest: 2026-01-19
+- Latest: 2026-01-21
