@@ -1,0 +1,12 @@
+-- Write your PostgreSQL query statement below
+SELECT
+    A.FIRSTNAME,
+    A.LASTNAME,
+    B.CITY,
+    B.STATE
+FROM
+    PERSON A
+LEFT JOIN
+    ADDRESS B
+ON
+    A.PERSONID = B.PERSONID
