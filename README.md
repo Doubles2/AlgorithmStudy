@@ -28,11 +28,16 @@
 | Codility | SqlEventsDelta | | Easy | | 20260111 | |
 | Codility | SqlWorldCup | | Medium | | 20260111 | |
 | Codility | SqlWorldCup | | Medium | | 20260111 | |
-| LeetCode | | | Easy | | 20260111 | 4/112 |
-| LeetCode | | | Medium | | 20260111 | 5/112 |
+| LeetCode | | | Easy | | 20260203 | 10/112 |
+| LeetCode | | | Medium | | 20260111 | 6/112 |
 | LeetCode | | | Hard | | 20260111 | 1/112 |
-
+| SQL 고득점 Kit | | | SELECT | | 20260203 | 12/33 |
+| SQL 고득점 Kit | | | SUM, MAX, MIN | | 20260203 | 4/10 |
+| SQL 고득점 Kit | | | GROUP BY | | 20260203 | 2/24 |
+| SQL 고득점 Kit | | | IS NULL | | 20260203 | 0/8 |
+| SQL 고득점 Kit | | | JOIN | | 20260203 | 0/12 |
+| SQL 고득점 Kit | | | String, Date | | 20260203 | 0/19 |
 ---
 
 ## Updates
-- Latest: 2026-01-21
+- Latest: 2026-02-03
