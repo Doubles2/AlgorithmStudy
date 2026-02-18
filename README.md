@@ -20,6 +20,9 @@
 | 플랫폼 | 문제명 | 유형/주제 | 난이도 | 풀이 링크 | 최초 풀이일 | 비고 |
 |---|---|---:|---:|---|---|---|
 | Codility | BinaryGap | Iterations | Easy |  | 20260217 | |
+| Codility | CyclicRotation | arrays | Easy |  | 20260218 | |
+| Codility | OddOccurrencesInArray | arrays | Easy |  | 20260218 | |
+| Codility | FrogJmp | Time Complexity | Easy |  | 20260218 | |
 
 
 ### SQL
@@ -41,4 +44,4 @@
 ---
 
 ## Updates
-- Latest: 2026-02-17
+- Latest: 2026-02-18
