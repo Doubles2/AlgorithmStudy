@@ -23,6 +23,8 @@
 | Codility | CyclicRotation | arrays | Easy |  | 20260218 | |
 | Codility | OddOccurrencesInArray | arrays | Easy |  | 20260218 | |
 | Codility | FrogJmp | Time Complexity | Easy |  | 20260218 | |
+| Codility | PermMissingElem | Time Complexity | Easy |  | 20260219 | |
+| Codility | TapeEquilibrium | Time Complexity | Easy |  | 20260219 | |
 
 
 ### SQL
