@@ -1,3 +1,38 @@
+/* 
+ * 다시 풀었을 때
+ */
+# Write your MySQL query statement below
+WITH BASE_ACTIVITY AS (
+    SELECT
+        PLAYER_ID,
+        EVENT_DATE,
+        EVENT_DATE_2ND,
+        DATEDIFF(EVENT_DATE_2ND, EVENT_DATE) AS DIFF_DD
+      FROM (
+        SELECT
+            PLAYER_ID,
+            EVENT_DATE,
+            LEAD(EVENT_DATE, 1) OVER (
+                PARTITION BY PLAYER_ID
+                ORDER BY EVENT_DATE
+            ) AS EVENT_DATE_2ND,
+            ROW_NUMBER() OVER (
+                PARTITION BY PLAYER_ID
+                ORDER BY EVENT_DATE
+            ) AS RN
+          FROM ACTIVITY
+      ) A
+     WHERE A.RN = 1
+)
+SELECT
+    ROUND(
+        SUM(CASE WHEN DIFF_DD = 1 THEN 1 ELSE 0 END) / COUNT(*),
+        2
+    ) AS fraction
+FROM BASE_ACTIVITY
+
+/* ======================================================================================= */
+
 /*
  * 최초 로그인 후 이력이기에 ROW_NUMBER()도 같이 봐야해
  */
