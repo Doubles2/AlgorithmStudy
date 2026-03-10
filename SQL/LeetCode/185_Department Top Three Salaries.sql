@@ -1,34 +1,20 @@
--- Write your PostgreSQL query statement below
-WITH BASE AS (
-    /* 부서 구분을 위한 BASE */
+# Write your MySQL query statement below
+WITH BASE_DRK AS (
     SELECT
-        A.*,
-        B.NAME AS DEPARTMENT
-    FROM
-        EMPLOYEE    A
-    LEFT JOIN
-        DEPARTMENT  B
-    ON  A.DEPARTMENTID = B.ID
-), 
-AGG AS (
-    SELECT
-        DEPARTMENT,
-        NAME AS EMPLOYEE,
+        NAME,
         SALARY,
+        DEPARTMENTID,
         DENSE_RANK() OVER (
-            PARTITION BY DEPARTMENT
+            PARTITION BY DEPARTMENTID
             ORDER BY SALARY DESC
-        ) AS RANK_SALARY
-    FROM
-        BASE
+        ) RK
+      FROM EMPLOYEE
 )
 SELECT
-    DEPARTMENT,
-    EMPLOYEE,
-    SALARY
-FROM
-    AGG
-WHERE
-    1=1
-AND
-    RANK_SALARY <= 3
+    D.NAME AS DEPARTMENT,
+    BD.NAME AS EMPLOYEE,
+    BD.SALARY
+  FROM BASE_DRK BD
+  LEFT JOIN DEPARTMENT D
+    ON BD.DEPARTMENTID = D.ID
+ WHERE BD.RK <= 3
