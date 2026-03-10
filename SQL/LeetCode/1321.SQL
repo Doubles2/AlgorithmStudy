@@ -1,0 +1,33 @@
+WITH DAILY AS (
+    SELECT
+        VISITED_ON,
+        SUM(AMOUNT) AS AMOUNT
+    FROM CUSTOMER
+    GROUP BY VISITED_ON
+),
+MA AS (
+    SELECT
+        VISITED_ON,
+        SUM(AMOUNT) OVER (
+            ORDER BY VISITED_ON
+            ROWS BETWEEN 6 PRECEDING AND CURRENT ROW
+        ) AS AMOUNT,
+        ROUND(
+            AVG(AMOUNT) OVER (
+                ORDER BY VISITED_ON
+                ROWS BETWEEN 6 PRECEDING AND CURRENT ROW
+            ),
+            2
+        ) AS AVERAGE_AMOUNT,
+        ROW_NUMBER() OVER (
+            ORDER BY VISITED_ON
+        ) AS RN
+    FROM DAILY
+)
+SELECT
+    VISITED_ON,
+    AMOUNT,
+    AVERAGE_AMOUNT
+FROM MA
+WHERE RN >= 7
+ORDER BY VISITED_ON;

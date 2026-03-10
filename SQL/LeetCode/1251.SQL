@@ -1,0 +1,22 @@
+# Write your MySQL query statement below
+WITH BASE_PRICE_UNITS AS (
+    SELECT
+        P.PRODUCT_ID,
+        P.PRICE,
+        US.UNITS
+      FROM PRICES P
+      LEFT JOIN UNITSSOLD US
+      ON P.PRODUCT_ID = US.PRODUCT_ID
+      AND US.PURCHASE_DATE >= P.START_DATE
+      AND US.PURCHASE_DATE <= P.END_DATE
+)
+SELECT
+    PRODUCT_ID,
+    COALESCE(
+        ROUND(
+                SUM(PRICE * UNITS) / SUM(UNITS)
+                , 2
+        ), 0
+    ) AS AVERAGE_PRICE
+  FROM BASE_PRICE_UNITS
+ GROUP BY PRODUCT_ID
