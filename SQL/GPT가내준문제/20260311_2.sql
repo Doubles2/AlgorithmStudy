@@ -1,0 +1,126 @@
+/* 문제1 */
+WITH completed_orders AS (
+    SELECT
+        customer_id,
+        order_date
+    FROM orders
+    WHERE status_code = 60
+),
+
+first_order_6m AS (
+    SELECT
+        customer_id,
+        MIN(order_date) AS first_order_in_6m
+    FROM completed_orders
+    WHERE order_date BETWEEN DATE '2025-09-01' AND DATE '2026-02-28'
+    GROUP BY customer_id
+),
+
+customer_history AS (
+    SELECT
+        f.customer_id,
+        f.first_order_in_6m,
+        MAX(c.order_date) AS last_order_before_6m
+    FROM first_order_6m f
+    LEFT JOIN completed_orders c
+        ON f.customer_id = c.customer_id
+       AND c.order_date < f.first_order_in_6m
+    GROUP BY
+        f.customer_id,
+        f.first_order_in_6m
+)
+
+SELECT
+    customer_id,
+    CASE
+        WHEN last_order_before_6m IS NULL THEN 'new'
+        WHEN DATEDIFF(first_order_in_6m, last_order_before_6m) >= 90 THEN 'reactive'
+        ELSE 'existing'
+    END AS segment,
+    first_order_in_6m,
+    last_order_before_6m
+FROM customer_history
+ORDER BY customer_id;
+
+/* 2번 */
+WITH BASE_ORDERS AS (
+	SELECT
+		CUSTOMER_ID,
+		ORDER_ID
+	  FROM ORDERS
+	 WHERE ORDERED_AT >= TIMESTAMP '2026-02-01 00:00:00'
+	   AND ORDERED_AT <  TIMESTAMP '2026-03-01 00:00:00'
+	   AND STATUS_CODE = 60
+),
+ORD_DELIV_RAW AS (
+	SELECT
+		BO.CUSTOMER_ID,
+		BO.ORDER_ID,
+		D.ESTIMATED_MINUTES,
+		CASE WHEN DATESTAMPDIFF('MINUTES', D.DELIVERED_AT, D.ESTIMATED_MINUTES) >= 15 THEN 1 ELSE 0 END COMP_YN
+	  FROM BASE_ORDERS BO
+	 INNER JOIN DELIVERIES D
+	    ON BO.ORDER_ID = D.ORDER_ID
+)
+SELECT
+	CUSTOMER_ID,
+	COUNT(*) AS TOTAL_COMPLETED_ORDERS,
+	SUM(CASE WHEN COMP_YN = 1 THEN 1 ELSE 0 END) AS DELAYED_ORDERS,
+	SUM(CASE WHEN COMP_YN = 1 THEN 1 ELSE 0 END)
+	/ NULLIF(COUNT(*), 0) AS DELAY_RATE,
+	CASE WHEN SUM(CASE WHEN COMP_YN = 1 THEN 1 ELSE 0 END) >= 2 THEN 'Y' ELSE 'N' END COMENSATION_FLAG
+  FROM ORD_DELIV_RAW
+
+  /* 3번 */
+  WITH BASE_ASSIGN AS (
+	SELECT 
+		CUSTOMER_ID,
+		VARIANT,
+		ASSIGNED_AT
+	  FROM (
+	  		SELECT
+	  			CUSTOMER_ID,
+	  			VARIANT,
+	  			ASSIGNED_AT,
+	  			ROW_NUMBER() OVER (
+	  				PARTITION BY CUSTOMER_ID
+	  				ORDER BY ASSIGNED_AT
+  			  FROM AB_ASSIGNMENTS
+  				) RN
+	  	)
+	 WHERE EXPERIMENT_ID = 'EATS_EXP_0101'
+	   AND RN = 1
+),
+ASSIGN_ORD_RAW AS (
+	SELECT
+		BA.CUSTOMER_ID,
+		BA.VARIANT,
+		O.ORDER_ID
+		O.GMV
+	  FROM BASE_ASSIGN BA
+	  LEFT JOIN ORDERS O
+	    ON BA.CUSTOMER_ID = O.CUSTOMER_ID
+	   AND BA.ASSIGNED_AT >= O.ORDERED_AT
+	   AND BA.ASSIGNED_AT < O.ORDERED_AT + INTERVAL 7 DAY
+	   AND O.STATUS_CODE = 60
+),
+ASSIGN_ORD_AGG_ORD_Y AS (
+	SELECT
+		CUSTOMER_ID,
+		VARIANT,
+		ORDER_ID,
+		SUM(GMV) AS GMV
+	  FROM ASSIGN_ORD_RAW
+	 WHERE ORDER_ID IS NOT NULL
+	 GROUP BY 1, 2, 3
+)
+SELECT
+	AOR.VARIANT,
+	COUNT(DISTINCT AOR.CUSTOMER_ID) AS ASSIGNED_CUSTOMERS,
+	COUNT(DISTINCT AOA.CUSTOMER_ID) AS CUSTOMERS_WITH_ORDER_IN_7D,
+	COUNT(DISTINCT AOA.CUSTOMER_ID) / COUNT(DISTINCT AOR.CUSTOMER_ID) AS REORDER_RATE_7D,
+	AVG(AOA.GMV) AS AVG_GMV_PER_ORDER_IN_7D
+  FROM ASSIGN_ORD_RAW AOR
+  LEFT JOIN ASSIGN_ORD_AGG_ORD_Y AOA
+    ON AOR.VARIANT = AOA.VARIANT
+ORDER BY 1
