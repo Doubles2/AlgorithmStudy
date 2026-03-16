@@ -25,7 +25,15 @@
 | Codility | FrogJmp | Time Complexity | Easy |  | 20260218 | |
 | Codility | PermMissingElem | Time Complexity | Easy |  | 20260219 | |
 | Codility | TapeEquilibrium | Time Complexity | Easy |  | 20260219 | |
-
+| LeetCode | | Sorting | Easy | | 20260316 | 1/97 |
+| LeetCode | | Sorting | Medium | | 20260316 | 0/297 |
+| LeetCode | | Sorting | Hard | | 20260316 | 0/115 |
+| LeetCode | | Array | Easy | | 20260316 | 2/425 |
+| LeetCode | | Array | Medium | | 20260316 | 0/1150 |
+| LeetCode | | Array | Hard | | 20260316 | 0/546 |
+| LeetCode | | Hash Table | Easy | | 20260316 | 2/185 |
+| LeetCode | | Hash Table | Medium | | 20260316 | 0/464 |
+| LeetCode | | Hash Table | Hard | | 20260316 | 0/150 |
 
 ### SQL
 | 플랫폼 | 문제명 | 유형/주제 | 난이도 | 풀이 링크 | 최초 풀이일 | 비고 |
@@ -34,9 +42,9 @@
 | Codility | SqlEventsDelta | | Easy | | 20260111 | |
 | Codility | SqlWorldCup | | Medium | | 20260111 | |
 | Codility | SqlWorldCup | | Medium | | 20260111 | |
-| LeetCode | | | Easy | | 20260203 | 15/112 |
-| LeetCode | | | Medium | | 20260111 | 12/112 |
-| LeetCode | | | Hard | | 20260111 | 1/112 |
+| LeetCode | | Database | Easy | | 20260316 | 15/112 |
+| LeetCode | | Database | Medium | | 20260316 | 12/112 |
+| LeetCode | | Database | Hard | | 20260316 | 1/112 |
 | SQL 고득점 Kit | | | SELECT | | 20260203 | 12/33 |
 | SQL 고득점 Kit | | | SUM, MAX, MIN | | 20260203 | 4/10 |
 | SQL 고득점 Kit | | | GROUP BY | | 20260203 | 2/24 |
@@ -46,4 +54,4 @@
 ---
 
 ## Updates
-- Latest: 2026-03-13
+- Latest: 2026-03-16
