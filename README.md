@@ -25,13 +25,24 @@
 | Codility | FrogJmp | Time Complexity | Easy |  | 20260218 | |
 | Codility | PermMissingElem | Time Complexity | Easy |  | 20260219 | |
 | Codility | TapeEquilibrium | Time Complexity | Easy |  | 20260219 | |
-| LeetCode | | Sorting | Easy | | 20260316 | 1/97 |
+| Codility | FrogRiverOne | Counting Elements | Easy |  | 20260323 | |
+| Codility | PermCheck | Counting Elements | Easy |  | 20260323 | |
+| Codility | MaxCounters | Counting Elements | Medium |  | 20260323 | |
+| Codility | MissingInteger | Counting Elements | Medium |  | 20260323 | |
+| LeetCode | | Bit Manipulation | Easy | | 20260323 | 1/52 |
+| LeetCode | | Recursion | Easy | | 20260323 | 1/11 |
+| LeetCode | | Stack | Easy | | 20260323 | 1/23 |
+| LeetCode | | Math | Easy | | 20260323 | 2/162 |
+| LeetCode | | Dynamic Programming | Easy | | 20260323 | 1/242 |
+| LeetCode | | String | Easy | | 20260323 | 2/242 |
+| LeetCode | | Greedy | Easy | | 20260323 | 1/50 |
+| LeetCode | | Sorting | Easy | | 20260323 | 3/97 |
 | LeetCode | | Sorting | Medium | | 20260316 | 0/297 |
 | LeetCode | | Sorting | Hard | | 20260316 | 0/115 |
-| LeetCode | | Array | Easy | | 20260316 | 2/425 |
+| LeetCode | | Array | Easy | | 20260323 | 4/425 |
 | LeetCode | | Array | Medium | | 20260316 | 0/1150 |
 | LeetCode | | Array | Hard | | 20260316 | 0/546 |
-| LeetCode | | Hash Table | Easy | | 20260316 | 2/185 |
+| LeetCode | | Hash Table | Easy | | 20260323 | 3/185 |
 | LeetCode | | Hash Table | Medium | | 20260316 | 0/464 |
 | LeetCode | | Hash Table | Hard | | 20260316 | 0/150 |
 
@@ -42,8 +53,8 @@
 | Codility | SqlEventsDelta | | Easy | | 20260111 | |
 | Codility | SqlWorldCup | | Medium | | 20260111 | |
 | Codility | SqlWorldCup | | Medium | | 20260111 | |
-| LeetCode | | Database | Easy | | 20260316 | 15/112 |
-| LeetCode | | Database | Medium | | 20260316 | 12/112 |
+| LeetCode | | Database | Easy | | 20260316 | 17/112 |
+| LeetCode | | Database | Medium | | 20260316 | 14/112 |
 | LeetCode | | Database | Hard | | 20260316 | 3/112 |
 | SQL 고득점 Kit | | | SELECT | | 20260203 | 12/33 |
 | SQL 고득점 Kit | | | SUM, MAX, MIN | | 20260203 | 4/10 |
@@ -54,4 +65,4 @@
 ---
 
 ## Updates
-- Latest: 2026-03-16
+- Latest: 2026-03-23
