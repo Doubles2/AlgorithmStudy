@@ -12,3 +12,20 @@ FROM EMPLOYEE E
 JOIN CNT_EMPLOYEE_BY_MANAGER C
   ON E.ID = C.MANAGERID
 WHERE C.CNT_EMPLOYEE >= 5;
+
+/* ======================== 한 번 더 풀이 ============================= */
+
+# Write your MySQL query statement below
+WITH BASE AS (
+    SELECT
+        MANAGERID,
+        COUNT(*) AS CNT
+      FROM EMPLOYEE
+     GROUP BY MANAGERID
+)
+SELECT
+    E.NAME
+  FROM EMPLOYEE E
+  JOIN BASE B
+    ON E.ID = B.MANAGERID
+   AND B.CNT >= 5

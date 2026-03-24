@@ -16,3 +16,24 @@ SELECT
     , 2) AS CONFIRMATION_RATE
   FROM USER_CONFIRM_BASE
  GROUP BY USER_ID
+
+/* ======================== 한 번 더 풀이 ============================= */
+
+ with base as (
+    select
+        s.user_id,
+        c.time_stamp,
+        c.action
+      from signups s
+      left
+      join Confirmations c
+        on s.user_id = c.user_id
+)
+select
+    user_id,
+    round(
+        sum(case when action = 'confirmed' then 1 else 0 end) * 1.0
+        / count(*)
+    , 2) as confirmation_rate
+  from base
+ group by user_id
