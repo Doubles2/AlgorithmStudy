@@ -32,3 +32,30 @@ SELECT
         * 100
     , 2) AS immediate_percentage
   FROM IMD_SCHED_RAW
+
+  /* ======================== 한 번 더 풀이 ============================= */
+
+  with base as (
+    select
+        customer_id,
+        order_gb
+      from (
+        select
+            customer_id,
+            case when order_date = customer_pref_delivery_date then 'immediate'
+                else 'scheduled'
+            end as order_gb,
+            row_number() over (
+                partition by customer_id
+                order by order_date
+            ) as rn
+        from delivery
+      ) t
+     where rn = 1    
+)
+select
+    round(
+        sum(case when order_gb = 'immediate' then 1 else 0 end) * 100.0
+        / count(*)
+    , 2) as immediate_percentage
+  from base
